@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aracely, Be My Valentine? 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root { 
+  --pink:#ff4d6d;
+  --glowpink: rgba(255, 150, 180, 0.45);
+}
+
+/* ---------------- BASE ---------------- */
+body {
+  margin:0;
+  overflow:hidden;
+  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  background:black;
+}
+
+/* ---------------- NIGHTTIME PINK GLOW ---------------- */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle at center,
+    rgba(255,100,150,0.15),
+    rgba(0,0,0,0.9));
+  z-index:0;
+}
+
+/* ---------------- SLIDESHOW ---------------- */
+.slideshow {
+  position:fixed;
+  inset:0;
+  z-index:0;
+  opacity:0.48;
+  overflow:hidden;
+}
+.slideshow img {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 2s ease;
+  animation:kenburns 18s ease-in-out infinite;
+}
+@keyframes kenburns {
+  0% { transform:scale(1); }
+  100% { transform:scale(1.06); }
+}
+.slideshow img:first-child { opacity:1; }
+
+/* ---------------- FLOATING LYRICS ---------------- */
+.lyrics {
+  position:fixed;
+  bottom:22px;
+  left:0; right:0;
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+  color:white;
+  z-index:10;
+  text-shadow:0 0 12px black;
+}
+
+/* ---------------- CARD GLOW ---------------- */
+.glassGlow {
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  width:330px;
+  height:180px;
+  border-radius:35px;
+  background:radial-gradient(circle, rgba(255,140,180,0.35), rgba(255,140,180,0));
+  filter:blur(45px);
+  z-index:3;
+}
+
+/* ---------------- GLASS CARD ---------------- */
+.card {
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  width:88%;
+  max-width:360px;
+  padding:22px 20px;
+  border-radius:28px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1.5px solid rgba(255,255,255,0.35);
+  box-shadow:0 0 12px var(--glowpink), 0 0 25px rgba(255,90,140,0.35);
+  text-align:center;
+  z-index:12;
+}
+h1 {
+  font-size:20px;
+  line-height:1.25;
+  margin:0 0 12px;
+  color:var(--pink);
+  text-shadow:0 0 8px rgba(255,120,150,0.45);
+}
+
+/* ---------------- BUTTONS ---------------- */
+button {
+  padding:10px 20px;
+  border:none;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+  margin:6px;
+}
+button:active { transform:scale(0.96); }
+
+#yesBtn {
+  background:linear-gradient(135deg,#ff4d6d,#ff6f9f);
+  color:white;
+  box-shadow:0 0 12px rgba(255,100,150,0.7);
+}
+#noBtn {
+  background:rgba(255,255,255,0.75);
+  color:#333;
+  box-shadow:0 0 10px rgba(255,255,255,0.4);
+}
+
+/* ---------------- FLOATING HEARTS ---------------- */
+.heart {
+  position:absolute;
+  font-size:20px;
+  color:var(--pink);
+  animation:floatUp 6s linear infinite;
+  text-shadow:0 0 12px rgba(255,77,109,0.7);
+  z-index:1;
+}
+@keyframes floatUp {
+  from { transform:translateY(110vh); opacity:1; }
+  to   { transform:translateY(-20vh); opacity:0; }
+}
+
+/* ---------------- FLOATING BEARS ---------------- */
+.bear {
+  position:absolute;
+  font-size:30px;
+  animation:floatSide 12s linear infinite;
+  z-index:1;
+}
+@keyframes floatSide {
+  from { transform:translateX(-15vw); }
+  to   { transform:translateX(115vw); }
+}
+
+/* ---------------- SPARKLES ---------------- */
+.sparkle {
+  position:fixed;
+  width:4px; height:4px;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  box-shadow:0 0 10px white, 0 0 4px pink;
+  animation: risesparkle 4s linear infinite;
+  z-index:2;
+}
+@keyframes risesparkle {
+  from { transform:translateY(100vh) scale(1); opacity:0.9; }
+  to   { transform:translateY(-10vh) scale(0.4); opacity:0; }
+}
+
+/* ---------------- SURPRISE BUTTON ---------------- */
+.surpriseBtn {
+  background:linear-gradient(135deg,#ff6fa8,#ff8fc4);
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:20px;
+  color:white;
+  border:none;
+  cursor:pointer;
+  margin-top:25px;
+  font-weight:700;
+  box-shadow:0 0 18px rgba(255,120,160,0.9);
+  animation:float 3s ease-in-out infinite;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+@keyframes float {
+  0%   { transform:translateY(0); }
+  50%  { transform:translateY(-6px); }
+  100% { transform:translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ---------------- SLIDESHOW IMAGES ---------------- -->
+<div class="slideshow">
+<img src="photo1.JPG">
+<img src="photo2.jpeg">
+<img src="photo3.JPG">
+<img src="photo4.jpeg">
+<img src="photo5.jpeg">
+<img src="photo6.JPG">
+<img src="photo7.JPG">
+<img src="photo8.JPG">
+<img src="photo9.jpeg">
+<img src="photo10.JPG">
+<img src="photo11.JPG">
+<img src="photo12.JPG">
+<img src="photo13.JPG">
+<img src="photo14.JPG">
+<img src="photo15.JPG">
+<img src="photo16.JPG">
+<img src="photo17.JPG">
+<img src="photo18.JPG">
+<img src="photo19.JPG">
+</div>
+
+<div class="glassGlow"></div>
+
+<div class="lyrics" id="lyricsText">🎶 Aracely, there’s nothing on you 💖</div>
+
+<div class="card">
+<h1>Aracely… will you be my Valentine? 💖</h1>
+<button id="yesBtn">Yes 💕</button>
+<button id="noBtn">No 😢</button>
+<p style="font-size:13px;">Tap anywhere to start music 🎶</p>
+</div>
+
+<!-- ---------------- MUSIC ---------------- -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+function startMusic(){ bgMusic.play().catch(()=>{}); }
+document.addEventListener("click", startMusic, { once:true });
+document.addEventListener("touchstart", startMusic, { once:true });
+
+/* ---- SLIDESHOW ---- */
+const slides = document.querySelectorAll(".slideshow img");
+let slideIndex=0;
+setInterval(()=>{
+  slides.forEach(i=>i.style.opacity=0);
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].style.opacity=1;
+},4000);
+
+/* ---- LYRICS ROTATION ---- */
+const lyricLines=[
+"🎶 Aracely, there’s nothing on you 💖",
+"✨ You’re my favorite person",
+"💘 Nobody compares to you",
+"🥰 My heart chose you",
+"❤️ Forever us"
+];
+let l=0;
+setInterval(()=>{
+  l=(l+1)%lyricLines.length;
+  lyricsText.textContent=lyricLines[l];
+},3500);
+
+/* ---- SPARKLES ---- */
+function spawnSparkle(){
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),4000);
+}
+setInterval(spawnSparkle, 250);
+
+/* ---- HEART TRAIL ---- */
+document.addEventListener("click", (e)=>{
+  for(let i=0;i<4;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.textContent="❤";
+    h.style.left=(e.clientX + (Math.random()*40-20))+"px";
+    h.style.top=(e.clientY + (Math.random()*40-20))+"px";
+    h.style.fontSize="18px";
+    h.style.animationDuration=(4+Math.random()*2)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+});
+
+/* ---- FLOATING HEARTS ---- */
+function spawnHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.textContent="❤";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(spawnHeart,500);
+
+/* ---- FLOATING BEARS ---- */
+function spawnBear(){
+  const b=document.createElement("div");
+  b.className="bear";
+  b.textContent="🧸";
+  b.style.top=Math.random()*80+"vh";
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),12000);
+}
+setInterval(spawnBear,5000);
+
+/* ---- NO BUTTON MOVES ---- */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("click",(e)=>{
+  startMusic();
+  e.preventDefault();
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*75+"vw";
+  noBtn.style.top=Math.random()*75+"vh";
+});
+
+/* ---- YES BUTTON ---- */
+const yesBtn=document.getElementById("yesBtn");
+yesBtn.addEventListener("click", ()=>{
+  startMusic();
+  confetti({ particleCount:200, spread:120 });
+
+  setTimeout(()=>{
+    const msg="Thank you so so so so so so so much for being my valentines once again and I wouldn’t want it to be with anyone else but you my love! ❤️";
+
+    const overlay=document.createElement("div");
+    overlay.style=`
+      position:fixed; inset:0;
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      background:rgba(0,0,0,0.55);
+      backdrop-filter:blur(4px);
+      z-index:9999;
+    `;
+
+    overlay.innerHTML=`
+      <div id='typedMessage' style="
+        font-family:'Great Vibes',cursive;
+        font-size:48px;
+        max-width:900px;
+        padding:40px;
+        color:#ffb6c1;
+        text-align:center;
+        text-shadow:0 0 15px rgba(255,182,193,0.85);
+      "></div>
+      <button id='surpriseBtn' class='surpriseBtn'>Click for a surprise 💝</button>
+    `;
+
+    document.body.appendChild(overlay);
+
+    let i=0;
+    function type(){
+      document.getElementById("typedMessage").textContent = msg.slice(0,i);
+      i++;
+      if(i<=msg.length) setTimeout(type,30);
+      else document.getElementById("surpriseBtn").style.opacity=1;
+    }
+    type();
+
+    document.getElementById("surpriseBtn").addEventListener("click", ()=>{
+      overlay.remove();
+      startMusic();
+    });
+
+  },1200);
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>
